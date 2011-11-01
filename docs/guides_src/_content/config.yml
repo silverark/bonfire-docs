@@ -1,0 +1,13 @@
+site:
+    title: Bonfire Guides
+    author: Lonnie Ezell and the Bonfire Team
+    pretty_urls: false
+    
+smartypants:
+    enable: true
+
+markdown:
+    use_markdown_extra: true
+    
+bonfire:
+    version: 0.2

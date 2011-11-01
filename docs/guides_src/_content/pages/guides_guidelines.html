@@ -1,0 +1,123 @@
+---
+title: Bonfire Guides Guidelines
+---
+
+
+<a name="use-markdown"></a>
+## 1 Markdown
+
+These guides are formatted using the [Markdown Extra](http://michelf.com/projects/php-markdown/extra/) syntax, which is a plain-text format that extends the [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax). You can find comprehensive documentation at the above links, and can even grab a [cheat sheet](http://tech.thingoid.com/download/PHPMarkdownExtraSyntaxSummary1.0.1-2up.pdf).
+
+<a name="introduction"></a>
+## 2 Introduction
+
+Each section should have an introduction that briefly describes what this guide covers and what they should know by the end of the guide.
+
+<a name="titles"></a>
+## 3 Titles
+
+Use &lt;h2> tags for chapters, and &lt;h3> tags for sections. Each Chapter and section should be prefaced by the number or section number of the content.
+
+Capitalize all words except for internal articles, prepositions, conjunctions, and forms of the verb to be:
+
+    ## 1 When are Users Saved?
+    
+    ### 1.1 Chapter Secton
+
+
+<a name="prose"></a>
+## 4 Prose Guidelines
+
+The guides and the API docs should share similar writing styles. Please refer to the [API Documentation Guidelines](api_doc_guidelines.html) for further information.
+
+<a name="file-structure"></a>
+## 5 File Structure
+
+When writing new guides, the guide file should be in the main 'pages' directory, and not in a subfolder.
+
+The file itself consists of four parts: the meta information, the main content, the info section and the sidebar. 
+
+### 5.1 Meta Information
+
+The meta information is the first part of the file and currently only contains the page title. The block is enclosed by a line just above and just below that contains only three dashes:
+
+    ---
+    title: My Page Title
+    ---
+
+### 5.2 Main Content
+
+The main chunk of your file will be made up of the body content, that appears in the left-hand column of the page. It can consist of any Markdown formatted documentation that your guide needs. Be sure to include plenty of examples so that what you're trying to describe is clear. 
+
+### 5.3 Info Section
+
+Following your main content is the introductory section. This contains the motivational text that appears in the Introduction (see above). This should be separated from the main content by a single line: 
+
+    ---introtext---
+    
+    ## Page Title
+    
+    Introductory text goes here.
+
+### 5.4 Sidebar
+
+Next are the links that make up the sidebar. Similar to the Introductory text, this section is separated from the introductory text by another single line: 
+
+	---sidebar--
+	
+	### Chapters
+	
+	1. [Section 1](#section1)
+	  * [SubSection 1](#subsection1) 
+
+You an examine any of the existing guides for examples, if needed.
+
+<a name="generating-guides"></a>
+## 6 Generating the Guides
+
+You can generate the guides on your own machine if you want to preview what your changes will look like. This can be done either dynamically or by creating the static files. Note that any files you generate will not be included in master, but are for your own use only.
+
+<a name="piecrust"></a>
+### 6.1 PieCrust
+
+Bonfire Guides are transformed from raw Markdown files into HTML by the [PieCrust](http://bolt80.com/piecrust/) static website generator. It provides a simple means to 'bake' the files into standalone html files, while wrapping it in a template for consistency.
+
+<a name="dynamic"></a>
+### 6.2 Dynamic Generation
+
+
+<a name="static"></a>
+### 6.3 Static Generation
+
+To generate static versions of the guides for your own use you should navigate to the <tt>docs/</tt> folder and type the following at the command line: 
+
+    $ ./_piecrust/chef.php bake -f --fileurls -o ./guides ./guides_src/
+
+This will force a rebuild of the guides into the <tt>./guides</tt> folder.
+
+<a name="changelog"></a>
+## 7 Changelog
+
+---introtext---
+
+## Bonfire Guides Guidelines
+
+This guide covers how to write new guides and the tools needed to do so.
+
+
+
+
+---sidebar---
+
+### Chapters
+
+1. [Markdown](#use-markdown)
+1. [Introduction](#introduction)
+1. [Titles](#titles)
+1. [Prose Guidelines](#prose)
+1. [File Structure](#file-structure)
+1. [Generating the Guides](#generating-guides)
+  * [PieCrust](#piecrust)
+  * [Dynamic Generation](#dynamic)
+  * [Static Generation](#static)
+1. [Changelog](#changelog)

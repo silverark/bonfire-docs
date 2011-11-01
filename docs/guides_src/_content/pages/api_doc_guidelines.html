@@ -1,0 +1,117 @@
+---
+title: API Documentation Guidelines
+---
+
+
+<a name="naturaldocs"></a>
+## 1 NaturalDocs
+
+The Bonfire API uses the [NaturalDocs](http://naturaldocs.org) system to generate the API documentation automatically. Please consult the documentation for help with the [markup](http://naturaldocs.org/documenting.html).
+
+
+
+<a name="wording"></a>
+## 2 Wording
+
+Write simple, declarative sentences. Brevity is a plus. Get to the point. 
+
+Write in the present tense: 'Returns an array that…', rather than "Returned an array.." or "Will return an array…".
+
+Start comments in the uppercase and follow regular punctuation rules. 
+
+Documentation has to be concise but comprehensive. Explore and document edge cases. 
+
+
+<a name="english"></a>
+## 3 English
+
+Please use American English (_color, center, modularize_, etc). See a [list of American and British English spelling differences here](http://en.wikipedia.org/wiki/American_and_British_English_spelling_differences).
+
+
+
+<a name="docblock"></a>
+## 4 The DocBlock
+
+The NaturalDocs docblock style is different than what many PHP developers may be used to. It is designed to be human-readable, and to create highly-readable documentation. 
+
+It should start with a definition of the class/function/etc. For methods and functions, include the parenthesis but not the parameters:
+
+    /*
+    	Method: render_view()
+    */
+    
+This should be followed by a short description of what the method does. It might include when or why you would want to use it, but remember to be concise.
+
+Next is a list of the Parameters that the method accepts, if applicable. Parameters should be on their own line, with the name and definition separated by a dash. The columns should be vertically aligned.
+
+    /*
+    	Parameters: 
+    		$view	- A string with the name of the view to render.
+    		$return	- If TRUE, will return the contents of the rendered view.
+    				  If FALSE, will echo the view to the screen.
+    */
+
+Only include the Returns: parameter if the method returns anything other than void, null or some other empty response.
+	
+    /*
+    	Returns:
+    		Either a string with the contents of the rendered view, or FALSE.
+    */
+
+Only include Access if something other than public.
+
+    /*
+    	Access:
+    		private
+    */
+
+
+<a name="examples"></a>
+## 5 Example Code
+
+Choose meaningful examples that depict the basics  as well as interesting points or trouble areas. 
+
+Use a single tab to indent chunks of code. 
+
+In certain cases, especially for longer docs or more complex methods, you might need an 'Examples' section in the docblock. 
+
+    /*
+    	Examples:
+     		$this->model->find_by('field', 'value');
+       		$this->model->find_by( array('field' => 'value', 'field2' => 'value2' ) );
+    */
+    
+
+
+<a name="filenames"></a>
+## 6 Filenames
+
+As a rule of thumb, filenames listed in comments should be relative to the main bonfire folder, in a standard configuration.
+
+    application/core/MY_Model.php			# Good!
+    MY_Model.php							# Bad
+    bonfire/application/core/MY_Model.php	# Bad
+
+
+<a name="changelog"></a>
+## 7 Changelog
+
+* November 1, 2011: Initial version based in large part on [Ruby on Rails guides](http://guides.rubyonrails.org/api_documentation_guidelines.html).
+
+---introtext---
+## API Documentation Guidelines
+
+This guide describes the Bonfire API documentation guidelines.
+
+
+---sidebar---
+
+### Chapters
+
+1. [NaturalDocs](#naturaldocs)
+1. [Wording](#wording)
+1. [English](#english)
+1. [DocBlock](#docblock)
+1. [Example Code](#examples)
+1. [Filenames](#filenames)
+1. [Changelog](#changelog)

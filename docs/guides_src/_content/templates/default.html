@@ -1,0 +1,91 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>{{ site.title }}: {{ page.title }}</title>
+	<meta name="description" content="">
+	<meta name="author" content="Lonnie Ezell and the Bonfire Team">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="assets/css/screen.css">
+	
+	<meta http-equiv="x-dns-prefetch-control" content="off" />
+</head>
+<body>
+	{% include 'toc.html' %}
+
+	<div class="inner" style="height: 0; padding: 0;">
+		<a id="toc-handle" href="#">Table of Contents</a>
+	</div>
+
+	<nav id="nav-top">
+		More at <a href="http://cibonfire.com" style="color: #fff"><b>cibonfire.com:</b></a>
+		<a href="http://cibonfire.com/about">About</a> | 
+		<a href="https://github.com/ci-bonfire/Bonfire">Download</a> |
+		<a href="http://forums.cibonfire.com">Discuss</a> | 
+		<a href="http://cibonfire.com/learn">Learn</a>
+	</nav>
+	
+	<div id="header">
+		<div class="inner">
+			<a href="{{ pcurl('') }}"><h1>Bonfire Guides</h1></a>
+		
+			<div id ="subnav">
+				<a href="{{ pcurl("") }}">Home</a>
+				<a href="{{ pcurl("contributing_to_bonfire") }}">Contribute</a>
+			</div>
+		</div>
+	</div>	<!-- /header -->
+	
+	<div id="intro">
+		<div class="inner">
+			{{ introtext|raw }}
+			
+			<div id="sidebar">
+				{{ sidebar|raw }}
+			</div>
+		</div>
+	</div><!-- /intro -->
+	
+	<div id="container">
+		<div class="inner">
+			<div id="main">
+				{{ content|raw }}
+				
+				<h2>Feedback</h2>
+				
+				<p>You're encouraged to help improve the quality of this guide.</p>
+
+				<p>If you see any typos or factual errors you are confident to patch, please clone <a href="#">bf-docs</a> and push the change yourself. That branch of Bonfire has public write access. Commits are still reviewed, but that happens after you've submitted your contribution. bf-docs is cross-merged with master periodically.</p>
+
+				<p>You may also find incomplete content, or stuff that is not up to date. Please do add any missing documentation for master. Check the <a href="{{ pcurl('contribute/guides_guidelines') }}">Bonfire Guides Guidelines</a> for style and conventions.</p>
+
+				<p>If for whatever reason you spot something to fix but cannot patch it yourself, please <a href="#">open an issue</a>.</p>
+			</div>	<!-- /main -->
+			
+		</div>	<!-- /inner -->
+	</div><!-- /container -->
+	
+	<div id="footer">
+		<div class="inner">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Bonfire</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cibonfire.com" property="cc:attributionName" rel="cc:attributionURL">Lonnie Ezell and the Bonfire Team</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+			<p>{{ piecrust.branding|raw }}</p>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="assets/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#toc-handle').click(function(){
+				$('#toc-main').slideToggle();
+			});
+		});
+	</script>
+</body>
+</html>

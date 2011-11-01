@@ -1,0 +1,212 @@
+<!-- PieCrust 0.1.3 - cached 2011-11-01 14:32:21:000000 -->
+<p><a name="reporting-an-issue"></a></p>
+
+<h2>1 Reporting an Issue</h2>
+
+<p>Bonfire uses <a href="https://github.com/ci-bonfire/Bonfire/issues">GitHub Issue Tracking</a> to track issues (primarily bugs and new code contributions). If you find a bug in Bonfire, this is the place to start. You will need a (free) <a href="http://github.com">GitHub</a> account in order to help out.</p>
+
+<p><a name="creating-bug-reports"></a></p>
+
+<h3>1.1 Creating a Bug Report</h3>
+
+<p>If you have found a problem in Bonfire start by searching the existing issues at <a href="https://github.com/ci-bonfire/Bonfire/issues">GitHub</a> to make sure it hasn&#8217;t already been reported. If there is not existing issue you can <a href="https://github.com/ci-bonfire/Bonfire/issues/new">add a new one</a>.</p>
+
+<p>At a minimum, your issue report needs a title and a description of the problem. But that&#8217;s not all, that&#8217;s just the minimum. You should include a code sample, if applicable, and the steps needed to recreate. It is also recommended to include your PHP version, and operating system. The goal is to make it easy for yourself&#8212;or others&#8212;to recreate and fix the bug.</p>
+
+<p>You should also assign one of the labels to the issue. For most issues, simply assigning the &#8216;Bug&#8217; label will be all you need to do. If you have found a truly critical bug that stops the execution of the program and makes it completely unusable (as opposed to just an annoyance or part not working) you can assign the &#8216;Critical&#8217; label to it. Please be considerate of the developers, though, and don&#8217;t use this label unless it is absolutely a show stopper.</p>
+
+<p>Once you&#8217;ve submitted your report, don&#8217;t hold your breath for a fix. Unless this is flagged as a &#8220;Critical, It Won&#8217;t Work At All!&#8221; type of bug, you are creating the issue in the hopes that other developers will work with you to find a fix. There is no guarantee that someone else will jump in a fix the problem for you. Creating an issue like this is mostly to help yourself start on the path of fixing the problem and for others to confirm it with a &#8220;I&#8217;m having this problem too&#8221; comment.</p>
+
+<p><a name="feature-requests"></a></p>
+
+<h3>1.2 Submitting Feature Requests</h3>
+
+<p>You can submit a feature request in much the same was reporting a bug (above). This time, however, you need to make sure to add a &#8216;Feature Request&#8217; label to the issue so that everyone can easily sort the issues.</p>
+
+<p><a name="fix-issues"></a></p>
+
+<h2>2 Helping Fix Existing Issues</h2>
+
+<p>The next step beyond reporting issues is to help the core team resolve existing issues. If you check the <a href="https://github.com/ci-bonfire/Bonfire/issues">Everyone&#8217;s Issues</a> list in GitHub, you&#8217;re sure to find issues that already need resolving. Here&#8217;s how you&#8212;regardless of your technical expertise&#8212;can help out.</p>
+
+<p><a name="verify-bugs"></a></p>
+
+<h3>2.1 Verifying Bug Reports</h3>
+
+<p>For starters, it helps to just verify bug reports. Can you reproduce the reported issue on your own computer? If so, you can add a comment to the issue saying that you&#8217;re seeing the same thing.</p>
+
+<p>If something is very vague, can you help squish it down into something specific? Maybe you can provide additional information to help reproduce a bug, or eliminate needless steps that aren&#8217;t required to help demonstrate the problem.</p>
+
+<p>Anything you can do to make bug reports more succinct or easier to reproduce is a help to folks trying to write code to fix those bugs&#8212;whether you end up writing the code yourself or not.</p>
+
+<p><a name="testing-patches"></a></p>
+
+<h3>2.3 Testing Patches</h3>
+
+<p>You can also help out by examining pull requests that have been submitted to Bonfire via GitHub. To apply someone&#8217;s changes you need to first create a dedicated branch:</p>
+
+<pre><code>$ git checkout -b testing_branch
+</code></pre>
+
+<p>Then you can use their remote branch to update your codebase. For example, let&#8217;s say the GitHub user JohnSmith has forked and pushed to the topic branch located at https://github.com/JohnSmith/Bonfire.</p>
+
+<pre><code>$ git remote add JohnSmith git://github.com/JohnSmith/Bonfire.git
+$ git pull JohnSmith topic
+</code></pre>
+
+<p>After applying their branch, test it out! Here are some things to think about:</p>
+
+<ul>
+<li>Does the change actually work?</li>
+<li>Are you happy with the tests? Can you follow what they&#8217;re testing? Are there any tests missing?</li>
+<li>Does it have proper documentation coverage? Should documentation elsewhere be updated?</li>
+<li>Do you like the implementation? Can you think of a nicer or faster way to implement a part of their change?</li>
+</ul>
+
+<p>Once you&#8217;re happy that the pull request contains a good change, comment on the GitHub issue indicating your approval. Your comment should indicate that you like the change and what you like about it. Something like:</p>
+
+<blockquote>
+  <p>I like the way you&#8217;ve restructured that code in generate_finder_sql, much nicer. The tests look good too.</p>
+</blockquote>
+
+<p>If your comment simply says &#8220;+1&#8221;, then odds are that other reviewers aren&#8217;t going to take it too seriously. Show that you took the time to review the pull request.</p>
+
+<p><a name="bonfire-docs"></a></p>
+
+<h2>3 Contributing to Bonfire Documentation</h2>
+
+<p>Bonfire has two main sets of documentation: the Guides help you learn Bonfire, while the API is a reference.</p>
+
+<p>You can help improve the guides by making them more coherent, adding missing information, correcting factual errors, fixing typos, bringing it up to date with the latest edge Bonfire. To get involved in the translation of Bonfire guides, please see <a href="">Translating Bonfire Guides</a>.</p>
+
+<p>If you’re confident about your changes, you can push them yourself directly via [bf-docs]. bf-docs is a branch with an <strong>open commit policy</strong> and public write access. Commits to bf-docs are still reviewed, but that happens after they are pushed. bf-docs is merged with master regularly, so you are effectively editing the Bonfire documentation.</p>
+
+<p>If you are unsure of the documentation changes, you can create an issue in the Bonfire <a href="https://github.com/ci-bonfire/Bonfire/issues?sort=created&amp;direction=desc&amp;state=open">issues tracker</a> on GitHub.</p>
+
+<p>When working with documentation, please take into account the <a href="api_documentation_guidelines.html">API Documentation Guidelines</a> and the <a href="coding_guidelines.html">Coding Guidelines</a>.</p>
+
+<p><a name="bonfire-code"></a></p>
+
+<h2>4 Contributing to the Bonfire Code</h2>
+
+<p><a name="clone-repo"></a></p>
+
+<h3>4.1 Clone the Bonfire Repository</h3>
+
+<p>The first thing you need to do to be able to contribute code is to clone the repository:</p>
+
+<pre><code>$ git clone git://github.com/ci-bonfire/Bonfire.git
+</code></pre>
+
+<p>and create a dedicated branch:</p>
+
+<pre><code>$ cd Bonfire
+$ git checkout -b my_new_branch
+</code></pre>
+
+<p>It doesn&#8217;t really matter what name you use, because this branch will only exist on your local computer.</p>
+
+<p><a name="write-code"></a></p>
+
+<h3>4.2 Write Your Code</h3>
+
+<p>Now get busy and add or edit code. You&#8217;re on your branch now, so you can write whatever you want (you can check to make sure you&#8217;re on the right branch with git branch -a). But if you&#8217;re planning to submit your change back for inclusion in Bonfire, keep a few things in mind:</p>
+
+<ul>
+<li>Get the code right</li>
+<li>Use Bonfire idioms and classes</li>
+<li>Include tests that fail without your code, and pass with it</li>
+<li>Update the documentation, the surrounding one, examples elsewhere, guides, whatever is affected by your contribution</li>
+</ul>
+
+<p><a name="follow-conventions"></a></p>
+
+<h3>4.3 Follow the Coding Conventions</h3>
+
+<p>Bonfire follows a simple set of <a href="coding_conventions.html">Coding Conventions</a> which are summarized here, but are given a more complete treatment in their own guide.</p>
+
+<ul>
+<li>Tabs, not spaces.</li>
+<li>No trailing whitespace. Blank lines should not have any space.</li>
+<li>Prefer &amp;&amp; / || over AND / OR.</li>
+<li>Always use brackets for foreach, if else, etc.</li>
+<li>Brackets on their own lines.</li>
+<li>Follow the conventions you see used in the source already.</li>
+</ul>
+
+<p><a name="sanity-check"></a></p>
+
+<h3>4.4 Sanity Check</h3>
+
+<p>You should not be the only person who looks at the code before you submit it. You know at least one other developer, right? Show them what you&#8217;re doing and ask for feedback. Doing this in private before you push a patch out publicly is the &#8220;smoke test&#8221; for a patch: if you can&#8217;t convince one other developer of the beauty of your code, you&#8217;re unlikely to convince the core team either.</p>
+
+<p><a name="commit-changes"></a></p>
+
+<h3>4.5 Commit Your Changes</h3>
+
+<p>When you&#8217;re happy with the code on your computer, you need to commit the changes to git:</p>
+
+<pre><code>$ git commit -a -m "Here is a commit message on what I changed in this commit"
+</code></pre>
+
+<p><a name="update-master"></a></p>
+
+<h3>4.6 Update Master</h3>
+
+<p>It&#8217;s pretty likely that other changes to master have happened while you were working. Go get them:</p>
+
+<pre><code>$ git checkout master
+$ git pull
+</code></pre>
+
+<p>Now reapply your patch on top of the latest changes:</p>
+
+<pre><code>$ git checkout my_new_branch
+$ git rebase master
+</code></pre>
+
+<p>No conflicts? Change still seems reasonable to you? Then move on.</p>
+
+<p><a name="fork"></a></p>
+
+<h3>4.7 Fork</h3>
+
+<p>Navigate to the Bonfire <a href="https://github.com/ci-bonfire/Bonfire">GitHub repository</a> and press &#8220;Fork&#8221; in the upper right hand corner.</p>
+
+<p>Add the new remote to your local repository on your local machine:</p>
+
+<pre><code>$ git remote add mine git@github.com:&lt;your user name&gt;/Bonfire.git
+</code></pre>
+
+<p>Push to your remote:</p>
+
+<pre><code>$ git push mine my_new_branch
+</code></pre>
+
+<p><a name="issue-pull-request"></a></p>
+
+<h3>4.8 Issue a Pull Request</h3>
+
+<p>Navigate to the Bonfire repository you just pushed to (e.g. https://github.com/your-user-name/Bonfire) and press &#8220;Pull Request&#8221; in the upper right hand corner.</p>
+
+<p>Write your branch name in branch field (is filled with master by default) and press &#8220;Update Commit Range&#8221;</p>
+
+<p>Ensure the changesets you introduced are included in the &#8220;Commits&#8221; tab and that the &#8220;Files Changed&#8221; incorporate all of your changes.</p>
+
+<p>Fill in some details about your potential patch including a meaningful title. When finished, press &#8220;Send pull request.&#8221; Bonfire Core will be notified about your submission.</p>
+
+<p><a name="iterate"></a></p>
+
+<h3>4.9 Iterate as Necessary</h3>
+
+<p>It&#8217;s entirely possible that the feedback you get will suggest changes. Don&#8217;t get discouraged: the whole point of contributing to an active open source project is to tap into community knowledge. If people are encouraging you to tweak your code, then it&#8217;s worth making the tweaks and resubmitting.</p>
+
+<p>And then…think about your next contribution!</p>
+
+<p><a name="changelog"></a></p>
+
+<h2>5 Changelog</h2>
+
+<ul>
+<li>October 31, 2011: Initial version based in large part on <a href="http://guides.rubyonrails.org/contributing_to_ruby_on_rails.html">Ruby on Rails guides</a>.</li>
+</ul>
