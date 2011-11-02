@@ -52,20 +52,11 @@ class __TwigTemplate_c5a20d396dadc42f57e774b92df7105e extends Twig_Template
 \t
 \t<div id=\"header\">
 \t\t<div class=\"inner\">
-\t\t\t<a href=\"";
-        // line 37
-        echo twig_escape_filter($this->env, $this->env->getExtension('piecrust')->getUrl(""), "html");
-        echo "\"><h1>Bonfire Guides</h1></a>
+\t\t\t<a href=\"index.html\"><h1>Bonfire Guides</h1></a>
 \t\t
 \t\t\t<div id =\"subnav\">
-\t\t\t\t<a href=\"";
-        // line 40
-        echo twig_escape_filter($this->env, $this->env->getExtension('piecrust')->getUrl(""), "html");
-        echo "\">Home</a>
-\t\t\t\t<a href=\"";
-        // line 41
-        echo twig_escape_filter($this->env, $this->env->getExtension('piecrust')->getUrl("contributing_to_bonfire"), "html");
-        echo "\">Contribute</a>
+\t\t\t\t<a href=\"index.html\">Home</a>
+\t\t\t\t<a href=\"contributing_to_bonfire.html\">Contribute</a>
 \t\t\t</div>
 \t\t</div>
 \t</div>\t<!-- /header -->
@@ -98,14 +89,11 @@ class __TwigTemplate_c5a20d396dadc42f57e774b92df7105e extends Twig_Template
 \t\t\t\t
 \t\t\t\t<p>You're encouraged to help improve the quality of this guide.</p>
 
-\t\t\t\t<p>If you see any typos or factual errors you are confident to patch, please clone <a href=\"#\">bf-docs</a> and push the change yourself. That branch of Bonfire has public write access. Commits are still reviewed, but that happens after you've submitted your contribution. bf-docs is cross-merged with master periodically.</p>
+\t\t\t\t<p>If you see any typos or factual errors you are confident to patch, please clone <a href=\"https://github.com/ci-bonfire/bonfire-docs\">bonfire-docs</a> and push the change yourself. That branch of Bonfire has public write access. Commits are still reviewed, but that happens after you've submitted your contribution. bf-docs is cross-merged with master periodically.</p>
 
-\t\t\t\t<p>You may also find incomplete content, or stuff that is not up to date. Please do add any missing documentation for master. Check the <a href=\"";
-        // line 67
-        echo twig_escape_filter($this->env, $this->env->getExtension('piecrust')->getUrl("contribute/guides_guidelines"), "html");
-        echo "\">Bonfire Guides Guidelines</a> for style and conventions.</p>
+\t\t\t\t<p>You may also find incomplete content, or stuff that is not up to date. Please do add any missing documentation for master. Check the <a href=\"guides_guidelines.html\">Bonfire Guides Guidelines</a> for style and conventions.</p>
 
-\t\t\t\t<p>If for whatever reason you spot something to fix but cannot patch it yourself, please <a href=\"#\">open an issue</a>.</p>
+\t\t\t\t<p>If for whatever reason you spot something to fix but cannot patch it yourself, please <a href=\"https://github.com/ci-bonfire/Bonfire/issues\">open an issue</a>.</p>
 \t\t\t</div>\t<!-- /main -->
 \t\t\t
 \t\t</div>\t<!-- /inner -->
