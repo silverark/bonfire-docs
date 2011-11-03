@@ -1,0 +1,191 @@
+---
+title: Coding Conventions
+---
+
+<a name="file_format"></a>
+## 1 File Format
+
+All files should be in the UTF-8 format. Line endings should be set to Unix-style line endings (LF). It is possible to have git auto-correct the line-endings for you. Please see [GitHub's Help Pages](http://help.github.com/dealing-with-lineendings/) for more information.
+
+
+<a name="tabs"></a>
+## 2 Tabs
+
+All tabs should be real tabs, not spaces or "soft tabs". This allows each developer to choose their prefered size.
+
+
+<a name="indentation"></a>
+## 3 Code Indentation
+
+Use Allman-style indenting. With the exception of class declarations, braces are always placed on a line by themselves and indented at the same level as the parent that 'owns' them. 
+
+{% geshi "PHP" use_classes %}
+class Class_name {
+
+	public function method_name() 
+	{
+		foreach ($array as $item)
+		{
+			// Do something
+		}
+	}
+	
+	//--------------------------------------------------------------------
+}
+{% endgeshi %}
+
+
+<a name="closing_tag"></a>
+## 4 PHP Closing Tag
+
+The PHP closing tag for the file should be *omitted*. This protects files from echoing data before they need to.
+
+
+<a name="visibility"></a>
+## 5 Visibility
+
+All class variables and methods must have visibility declared.
+
+{% geshi "PHP" use_classes %}
+class Class_name {
+
+	public		$property;
+	protected	$other_property;
+	private	$ci;
+
+	//--------------------------------------------------------------------
+
+	public function method_name() 
+	{
+		
+	}
+	
+	//--------------------------------------------------------------------
+	
+}
+{% endgeshi %}
+
+
+<a name="class_naming"></a>
+## 6 Class and Method Naming
+
+Class names should always have their first letter uppercase. 
+
+Use the PHP 5 *__construct()* function for constructors unless absolutely necessary.  
+
+Multiple words should be separated with an underscore, and not CamelCased. 
+
+All other class methods should be entirely lowercased and named to clearly indicate their function. 	
+
+
+<a name="var_naming"></a>
+## 7 Variable Naming
+
+All variable names should describe what they are without being overly verbose.  
+
+They should be only contain letters, numbers and underscores (no CamelCase).	 	
+
+Avoid short variable names whenever possible, and opt for a more descriptive name.
+
+
+<a name="readable"></a>
+## 8 Readable Code
+
+You should strive to make your code as easy to read as possible. This makes it easier for other developers to get familiar with your code.
+
+<a name="nesting"></a>
+### 8.1 Avoid Nesting
+
+Avoid deep nesting of logic checks where possible. This only serves to make the code confusing down the road. Instead, check for an error condition and _return_, or similar function, as early as possible.
+
+GOOD: 
+
+{% geshi "PHP" use_classes %}
+	public function method_name() 
+	{
+		if (!isset($var))
+		{
+			return false;
+		}
+		
+		if ($other_var !== TRUE)
+		{
+			return false;
+		}
+		
+		foreach ($this as $that)
+		{
+			// Code here...
+		}
+	}
+	
+	//--------------------------------------------------------------------
+	
+{% endgeshi %}
+
+BAD:
+
+{% geshi "PHP" use_classes %}
+    public function method_name() 
+    {
+    	if (isset($var))
+    	{
+    		if ($other_var === TRUE)
+    		{
+    			foreach ($this as $that)
+    			{
+    				if ($that == $something)
+    				{
+    					// Code here...
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    //--------------------------------------------------------------------
+    
+{% endgeshi %}
+
+
+<a name="comments"></a>
+### 8.2 Comment as Needed
+
+Comments should be used as frequently as needed, but not overdone. If your variable names and method names are descriptive then your code will be understandable without a lot of comments. 
+
+This doesn't mean don't comment at all. That's even worse. 
+
+Use comments to
+
+* Describe why you are doing something (not how - that's what the code is for)
+* Separate the logic into self-contained chunks to make finding your place easier.
+* As a reminder of what something is, or where it came from (if it is handled in another class).
+
+
+<a name="changelog"></a>
+## 9 Changelog
+
+* Nov. 2, 2011: Initial release, based on old [PyroCMS](http://pyrocms.com) coding conventions.
+
+---introtext---
+
+## Coding Conventions
+
+This guide describes the coding conventions that all developers (core or module) should adhere to.
+
+
+---sidebar---
+
+### Chapters
+
+1. [File Format](#file_format)
+1. [Tabs](#tabs)
+1. [Indentation](#indentation)
+1. [Closing Tag](#closing_tag)
+1. [Visibility](#visibility)
+1. [Class and Method Naming](#class_naming)
+1. [Variable Naming](#var_naming)
+1. [Readable Code](#readable)
+  * [Avoid Nesting](#nesting)
+  * [Comment as Needed](#comments)
+1. [Changelog](#changelog)

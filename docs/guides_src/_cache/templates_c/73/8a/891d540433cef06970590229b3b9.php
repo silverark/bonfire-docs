@@ -31,6 +31,7 @@ class __TwigTemplate_738a891d540433cef06970590229b3b9 extends Twig_Template
 \t\t\t\t\t<li><a href=\"contributing_to_bonfire.html\">Contributing to Bonfire</a></li>
 \t\t\t\t\t<li><a href=\"api_doc_guidelines.html\">API Documentation Guidelines</a></li>
 \t\t\t\t\t<li><a href=\"guides_guidelines.html\">Bonfire Guides Guidelines</a></li>
+\t\t\t\t\t<li><a href=\"coding_conventions.html\">Coding Conventions</a></li>
 \t\t\t\t</ul>
 \t\t\t</div>
 \t\t

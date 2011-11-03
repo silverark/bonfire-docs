@@ -160,8 +160,8 @@ ul {
 	font-size: 16px;
 }
 #intro .inner {
-	padding-right: 280px;
-	width: 680px;
+	padding-right: 290px;
+	width: 660px;
 }
 
 /* !Main */
@@ -283,3 +283,20 @@ pre code {
 	border-color:  #df8f8f;
 	color:  #533232;
 }
+
+/* !Syntax Higlighting */
+pre.php, pre.html, pre.javascript {
+	background: #222;
+	color: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1em;
+	font-size: 13px;
+	line-height: 1.3;
+}
+.kw1, .kw2 { color: #ec76b4; }
+.re0 { color: #ffd67c; }
+.kw4 { color: #ffd67c; }
+.sy0 { color: #e96b36; }
+.co1 { color: #91dc93; }
