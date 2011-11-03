@@ -46,5 +46,6 @@ bonfire/modules/**/.hg/*
 bonfire/modules/*
 # Except the following modules:
 
-# Ignore generated Guides
+# Ignore generated Guides and docs cache
 docs/guides/*
+docs/guides_src/_cache/*
