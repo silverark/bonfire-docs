@@ -3,15 +3,42 @@ title: Changelog
 ---
 
 <a name="0.3"></a>
-## Version 0.3-RC1 (Unreleased)
+## Version 0.2.1
+
+Released: November 3, 2011
 
 ### Additions
 
+* New functionality for end-users to edit their profile in the frontend.
+* Added clarification about RewriteBase to the default .htaccess files
+
+### Enhancements
+
+* state_select and country_select can now have id's and class names assigned.
+* Improvements to ModuleBuilder, including: better checkboxes, improved security in controllers, BOOL field fix
+* config_file_helper can now read and write module config files
+* Updated jQuery to latest 1.6.4
+* Assets library now checks for media types for external links
+* Profiler bar now can be set different for frontend and admin area.
+* Added extra settings to the email settings in admin area - issue #237
+* My_Form_validation's unique() method given an extra field to check you're not comparing against the current record.
+* Module Builder improvements to the Front Controller and Views and also the Admin Index view when soft_deletes, created_on and modified_on are selected
+
+### Bugs
+
+* Fixed typo that caused errors to be displayed when creating new users, even though they were successfully created - issue #241
 * Edit Profile for the front end user - issue #197
 * Mod_rewrite check in the installer to set the base_url - issue #52
+* Fixed a bug in the migration file names
+* Removed JS references from the front_controller - issue #223
+* Migrations now check for an array before looping through each.
+* Added a writable check on the modules folder - issue #234
+
 
 <a name="0.2"></a>
 ## Version 0.2
+
+Released: October 4, 2011
 
 ### Additions
 
