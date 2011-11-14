@@ -1,18 +1,48 @@
-<!-- PieCrust 0.1.3 - cached 2011-11-02 22:01:31:000000 -->
+<!-- PieCrust 0.1.3 - cached 2011-11-14 13:37:54:000000 -->
 <p><a name="0.3"></a></p>
 
-<h2>Version 0.3-RC1 (Unreleased)</h2>
+<h2>Version 0.2.1</h2>
+
+<p>Released: November 3, 2011</p>
 
 <h3>Additions</h3>
 
 <ul>
+<li>New functionality for end-users to edit their profile in the frontend.</li>
+<li>Added clarification about RewriteBase to the default .htaccess files</li>
+</ul>
+
+<h3>Enhancements</h3>
+
+<ul>
+<li>state_select and country_select can now have id&#8217;s and class names assigned.</li>
+<li>Improvements to ModuleBuilder, including: better checkboxes, improved security in controllers, BOOL field fix</li>
+<li>config_file_helper can now read and write module config files</li>
+<li>Updated jQuery to latest 1.6.4</li>
+<li>Assets library now checks for media types for external links</li>
+<li>Profiler bar now can be set different for frontend and admin area.</li>
+<li>Added extra settings to the email settings in admin area - issue #237</li>
+<li>My_Form_validation&#8217;s unique() method given an extra field to check you&#8217;re not comparing against the current record.</li>
+<li>Module Builder improvements to the Front Controller and Views and also the Admin Index view when soft_deletes, created_on and modified_on are selected</li>
+</ul>
+
+<h3>Bugs</h3>
+
+<ul>
+<li>Fixed typo that caused errors to be displayed when creating new users, even though they were successfully created - issue #241</li>
 <li>Edit Profile for the front end user - issue #197</li>
 <li>Mod_rewrite check in the installer to set the base_url - issue #52</li>
+<li>Fixed a bug in the migration file names</li>
+<li>Removed JS references from the front_controller - issue #223</li>
+<li>Migrations now check for an array before looping through each.</li>
+<li>Added a writable check on the modules folder - issue #234</li>
 </ul>
 
 <p><a name="0.2"></a></p>
 
 <h2>Version 0.2</h2>
+
+<p>Released: October 4, 2011</p>
 
 <h3>Additions</h3>
 

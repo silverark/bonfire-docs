@@ -1,0 +1,456 @@
+---
+title: Bonfire Models
+---
+
+<a name="overview"></a>
+## 1 Model Overviews
+
+Keeping with the MVC spirit, Bonfire uses Models to allow you interact with your database in a simple, consistent manner. By using the **BF_Model** as the base class for all of your models, you can very quickly setup a simple model capable of finding records, creating new and editing existing records, deleting records, checking if a key/value is unique in this table, counting the results, and more. 
+
+BF_Model acts as a middleman layer to between your models and CodeIgniter's standard Model class, working hand-in-hand with ActiveRecord query builder. If you don't need any special queries, your can have a working model in just a handful of lines.
+
+<a name="orm"></a>
+### 1.1 Is it an ORM? 
+
+BF_Model is not an ORM. While ORM's have their place, Bonfire does not ship with one included. 
+
+
+<a name="skeleton"></a>
+## 2 A Skeleton Model
+
+To get started with a new model, you can use the following skeleton file: 
+
+
+{% geshi "PHP" use_classes %}
+	class X_model extends BF_Model {
+	
+		protected $table			= 'table_name';
+		protected $key			= 'id';
+		protected $soft_deletes	= false;
+		protected $date_format	= 'datetime';
+		protected $set_created	= true;
+		protected $set_modified	= false;
+	
+	}
+{% endgeshi %}
+
+
+<a name="table"></a>
+### 2.1 <tt>$table</tt>
+
+The var <tt>$table</tt> should be set to the name of the table in your database. If you database is set to use a prefix (Bonfire defaults to a <tt>bf_</tt> prefix), you should leave the prefix off. So a table named <tt>bf_users</tt> should be entered as <tt>users</tt>.
+
+<a name="key"></a>
+### 2.2 <tt>$key</tt>
+
+The var <tt>$key</tt> should be the name of the primary key for your table. BF_Model requires that your table has primary key. If it doesn't you should extend Model and will need to write your own methods to interface with the database. The <tt>$key</tt> is expected to be linked to an INT field. 
+
+<a name="soft_deletes"></a>
+### 2.3 <tt>$soft_deletes</tt>
+
+Bonfire uses the concept of *soft deletes* that will set a flag that an item has been deleted instead of actually deleting the item. This allows you to later restore the user in case the deletion was accidental, or to keep a permanent record of any sensitive information, like transaction records.
+
+To use soft_deletes, your table must have a <tt>deleted</tt> field that is a **TINYINT (1)**. A value of <tt>0</tt> means the record has not been deleted, while a value of <tt>1</tt> shows that the item has been deleted.
+
+If <tt>$soft_deletes == TRUE</tt>, Bonfire will automatically update the record to set <tt>deleted</tt> to a value of <tt>1</tt>.
+
+If <tt>$soft_deletes == FALSE</tt>, the record will be permanently deleted from the database.
+
+
+<a name="date_format"></a>
+### 2.4 <tt>$date_format</tt>
+
+The <tt>$date_format</tt> class var specifies the types of fields that <tt>created_on</tt> and <tt>modified_on</tt> fields are expected to be. The allowed values are <tt>int, datetime, or date</tt>. If you are using UNIX timestamps then you should use the <tt>int</tt> fieldtype.
+
+
+<a name="set_created"></a>
+### 2.5 <tt>$set_created</tt>
+
+Bonfire can automatically set your created on dates and times for you, in the format specified through <tt>$date_format</tt>. To use this, your table must have a <tt>created_on</tt> field of the proper type.
+
+If <tt>$set_created == TRUE</tt>, Bonfire will set the <tt>created_on</tt> field value for you at the time of an <tt>insert()</tt> call. 
+
+<a name="set_modified"></a>
+### 2.6 <tt>$set_modified</tt>
+
+Bonfire can automatically set your modified on dates and times for you, in the format specified through <tt>$date_format</tt>. To use this, your table must have a <tt>modified_on</tt> field of the proper type.
+
+If <tt>$set_created == TRUE</tt>, Bonfire will set the <tt>created_on</tt> field value for you at the time of an <tt>insert()</tt> call. 
+
+
+
+<a name="methods"></a>
+## 3 Provided Methods
+
+By using the skeleton file, you get a number of methods ready to use on your model. All of these methods can be overriden in your own model if you need to customize them by joining other tables, processing the results before handing off to the controller, etc.
+
+
+<a name="find"></a>
+### 3.1 <tt>find()</tt>
+
+The <tt>find()</tt> method is used to locate a single record based on it's <tt>id</tt>.
+
+{% geshi "PHP" use_classes %}
+$user = $this->user_model->find($id);
+
+echo $user->username;
+{% endgeshi %}
+
+Returns an object with the results if found, or <tt>FALSE</tt> if not found.
+
+
+<a name="find_by"></a>
+### 3.2 <tt>find_by()</tt>
+
+A convenience method that combines the <tt>where()</tt> and <tt>find()</tt> methods. Expects to return a single result, so you should search on a field that will have unique values.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->find_by('email', 'darth@theempire.com');
+{% endgeshi %}
+
+This method can also be called with only a single associative array as the first parameter. This allows you set multiple criteria to search by.
+
+{% geshi "PHP" use_classes %}
+$user = $this->user_model->find( array('email'=>'darth@theempire.com', 'deleted'=>0) );
+
+# SQL: SELECT * FROM `bf_users` WHERE email='darth@theempire.com' AND deleted='0'
+{% endgeshi %}
+
+This defaults to combining all criteria as "AND" but can be modified by passing the the type into the third parameter: 
+
+{% geshi "PHP" use_classes %}
+$user = $this->user_model->find( array('email'=>'darth@theempire.com', 'deleted'=>0), null, 'OR' );
+
+# SQL: SELECT * FROM `bf_users` WHERE email='darth@theempire.com' OR deleted='0'
+{% endgeshi %}
+
+
+<a name="find_all"></a>
+### 3.3 <tt>find_all()</tt>
+
+Locates all records in the table. 
+
+{% geshi "PHP" use_classes %}
+$this->user_model->find_all();
+{% endgeshi %}
+
+If you need to modify the search criteria you can use any of the <a href="#chainable_methods">chainable methods</a>.
+
+{% geshi "PHP" use_classes %}
+$users = $this->user_model->where('deleted', 1)
+						  ->limit(25)
+						  ->find_all();
+				
+foreach ($users as $user)
+{
+	echo $user->username;
+}
+{% endgeshi %}
+
+Returns an array of objects where each object holds the results of a single record. 
+
+<a name="find_all_by"></a>
+### 3.4 <tt>find_all_by()</tt>
+
+Locates all records matching certain criteria. This is a convenience method for using a <tt>where()</tt> and a <tt>find_all()</tt> in one command.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->find_all_by('deleted', 1);
+{% endgeshi %}
+
+Any of the standard options available to a CodeIgniter <tt>where()</tt> method may be used here.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->find_all_by('deleted', 1);
+$this->user_model->find_all_by('deleted !=', 0);
+$this->user_model->find_all_by( array('email'=>'darth@theempire.com', 'deleted'=>0) );
+{% endgeshi %}
+
+Returns an array of objects where each object holds the results of a single record.
+
+<a name="insert"></a>
+### 3.5 <tt>insert()</tt>
+
+Creates a new record. Will set the <tt>created_on</tt> field if the model is setup to allow that. The first parameter should be an associative array of field/values to insert.
+
+{% geshi "PHP" use_classes %}
+$user = array(
+	'email'		=> 'dart@theempire.com',
+	'username'	=> 'darth.vader'
+);
+$this->user_model->insert($user);
+
+# SQL: INSERT INTO `bf_users` (email, username, created_on) VALUES ('darth@theempire.com', 'darth.vader', 1321645674);
+{% endgeshi %}
+
+Returns an INT ID of the new record on success, or <tt>FALSE</tt> on failure.
+
+<a name="update"></a>
+### 3.6 <tt>update()</tt>
+
+Updates an existing record in the database by ID. Will set the correct time for the <tt>modified_on</tt> field, if the model requires it.
+
+{% geshi "PHP" use_classes %}
+$user = array(
+	'email'		=> 'dart@theempire.com',
+	'username'	=> 'darth.vader'
+);
+$this->user_model->update($user_id, $user);
+
+# SQL: UPDATE `bf_users` SET email='darth@theempire.com', username='darth.vader', modified_on=1321645674 WHERE id=1;
+{% endgeshi %}
+
+Returns a boolean <tt>TRUE/FALSE</tt> on success/failure.
+
+<a name="update_where"></a>
+### 3.7 <tt>update_where()</tt>
+
+Updates a single record in the database by a key/value pair. Will set the correct time for the <tt>modified_on</tt> field, if the model requires it.
+
+{% geshi "PHP" use_classes %}
+$user = array(
+	'email'		=> 'dart@theempire.com',
+	'username'	=> 'darth.vader'
+);
+$this->user_model->update('is_father', 1, $user);
+
+# SQL: UPDATE `bf_users` SET email='darth@theempire.com', username='darth.vader', modified_on=1321645674 WHERE is_father=1;
+{% endgeshi %}
+
+<a name="delete"></a>
+### 3.8 <tt>delete()</tt>
+
+Deletes a single record from the database. If <tt>$soft_deletes</tt> are on, then will just set the <tt>deleted</tt> field to <tt>1</tt>. Otherwise, will permanently delete the record from the database.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->delete($user_id);
+
+# SQL w/ soft deletes: UPDATE bf_users SET deleted=1 WHERE id=$user_id;
+# SQL w/out soft deletes: DELETE FROM bf_users WHERE id=$user_id;  
+{% endgeshi %}
+
+Returns a boolean <tt>TRUE/FALSE</tt> on success/failure.
+
+
+
+<a name="is_unique"></a>
+### 3.9 <tt>is_unique()</tt>
+
+Checks to see if a given field/value combination would be unique in the table. 
+
+{% geshi "PHP" use_classes %}
+$this->user_model->is_unique('email', 'darth@theempire.com');
+{% endgeshi %}
+
+
+<a name="count_all"></a>
+### 3.10 <tt>count_all()</tt>
+
+Counts all records in the table.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->count_all();
+{% endgeshi %}
+
+Returns an INT containing the number of results, or FALSE.
+
+<a name="count_by"></a>
+### 3.11 <tt>count_by()</tt>
+
+Counts the number of elements that match the field/value pair.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->count_by('delete', 1);
+{% endgeshi %}
+
+Returns an INT containing the number of results, or FALSE.
+
+
+<a name="get_field"></a>
+### 3.12 <tt>get_field()</tt>
+
+A convenience method to return only a single field of the specified row. The first parameter is the ID of the row to search in. The second parameter is the column to return the value of.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->get_field($user_id, 'email');
+{% endgeshi %}
+
+Returns the value of the row's field, or FALSE.
+
+
+
+<a name="chainable_methods"></a>
+## 4 Chainable Methods
+
+Thanks to CodeIgniter's [ActiveRecord](http://codeigniter.com/user_guide/database/active_record.html) library, it is very simply to modify the BF_Model's methods. This can be done through either chainable methods or by extending methods.
+
+Chainable methods are a feature of PHP 5 and higher that allow you to return the results of one function into another, and to keep this 'chain' of events continuing through several functions. Bonfire duplicates several of the stock ActiveRecord methods in BF_Model to make it simple and elegant to customize your queries.
+
+
+<a name="where"></a>
+### 4.1 <tt>where()</tt>
+
+Modifies the query to a specific <tt>where</tt> condition. Can be used with any of the read-type queries (find, find_all, etc).
+
+The first parameter is the field to match against. The second parameter is the value of the field to find.
+
+Accepts any of the standard CodeIgniter ActiveRecord where statements.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->where('email', 'darth@theempire.com');
+$this->user_model->where('email !=', 'darth@theempire.com');
+$this->user_model->where( array('email' => 'darth@theempire.com') );
+
+$this->user_model->where('email', 'darth@theempire.com')
+				 ->find_all();
+{% endgeshi %}
+
+<a name="select"></a>
+### 4.2 <tt>select()</tt>
+
+Sets the select portion of the query in a chainable format. Can be used with any read-type queries (find, find_all, etc).
+
+The only parameter is a string with the columns to return from each record.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->select('id, email, username')
+				 ->find_all();
+{% endgeshi %}
+
+
+<a name="limit"></a>
+### 4.3 <tt>limit()</tt>
+
+Sets the limit portion of the query in a chainable format. Can be used with any read-type queries (find, find_all, etc).
+
+The first parameters is the number of items to limit results to. The second (optional) parameter is the number of records to offset the result by.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->limit(20, 0)
+				 ->find_all();
+{% endgeshi %}
+
+<a name="order_by"></a>
+### 4.4 <tt>order_by()</tt>
+
+Inserts a chainable order_by method from either a string or an array of field/order combinations. Can be used with any read-type queries (find, find_all, etc).
+
+If the $field value is an array, it should look like:
+		 
+		 array(
+		 	'field1' => 'asc',
+		 	'field2' => 'desc'
+		 );
+
+{% geshi "PHP" use_classes %}
+$this->user_model->order_by('email', 'asc')
+				 ->find_all();
+				 
+$this->user_model->order_by( array(
+								'email' 	=> 'asc',
+								'username'	=> 'desc'
+							) )
+				 ->find_all();
+{% endgeshi %}
+
+
+### Combining the Chains
+
+Any or all of the chainable methods can be used in any order within a call.
+
+{% geshi "PHP" use_classes %}
+$this->user_model->select('id, email, 'username')
+				 ->where('deleted', 0)
+				 ->limit(20, 0)
+				 ->order_by('created_on', 'asc')
+				 ->find_all();
+{% endgeshi %}
+
+<a name="extending"></a>
+## 5 Extending Methods
+
+While it is possible to modify the query via the chainable methods any time you need results in your controller, it is highly recommended to extend the model's methods to bring you the results you need. This keeps all of your changes to queries in a single place. 
+
+Sometimes, you might want to do some additional processing to the database results before passing it on to the controller. This is another perfect example of when to extend the model's method.
+
+To extend an existing method, you simply create a new method in your model that accepts the same parameters as the original BF_Model method.
+
+{% geshi "PHP" use_classes %}
+// Extend the existing functionality.
+public function find($id=null)
+{
+	$result = parent::find($id);
+	
+	if ($result)
+	{
+		$result->display_name = $this->format_name($result);
+	}
+	
+	return $result;
+}
+{% endgeshi %}
+
+
+<a name="in_controller"></a>
+## 6 Modify Query in Controller
+
+You can modify a query in your model for a single use by using CodeIgniter's ActiveRecord commands in your controllers. Since BF_Model uses the ActiveRecord commands, the changes in your controller will affect the results of the next query in your model.
+
+{% geshi "PHP" use_classes %}
+// In your controller.
+
+$this->db->join('other_table', 'link_field = users.id', 'left');
+$user = $this->user_model->find($user_id);
+{% endgeshi %}
+
+
+<a name="changelog"></a>
+## 7 Changelog
+
+* Nov 14, 2011: Initial version by Lonnie Ezell.
+
+
+---introtext---
+
+## Bonfire Models
+
+Interacting with the database is made easy through the use of a powerful base model. By the time you finish this guide you should: 
+
+* Understand the BF_Model
+* Know how to quickly create a new model
+* Create custom function and overrides in your model
+* Modify the queries using ActiveRecord in your Controllers 
+
+---sidebar---
+
+### Chapters
+
+1. [Overview](#overview)
+  * [Is it an ORM?](#orm)
+2. [Skeleton Model](#skeleton)
+  * [$table](#table)
+  * [$key](#key)
+  * [$soft_deletes](#soft_deletes)
+  * [$date_format](#date_format)
+  * [$set_created](#set_created)
+  * [$set_modified](#set_modified)
+3. [Provided Methods](#methods)
+  * [find()](#find)
+  * [find_by()](#find_by)
+  * [find_all_by()](#find_all_by)
+  * [insert()](#insert)
+  * [update()](#update)
+  * [update_where()](#update_where)
+  * [delete()](#delete)
+  * [is_unique()](#is_unique)
+  * [count_all()](#count_all)
+  * [count_by()](#count_by)
+  * [get_field()](#get_field)
+1. [Chainable Methods](#chainable_methods)
+  * [where()](#where)
+  * [select()](#select)
+  * [limit()](#limit)
+  * [order_by()](#order_by)
+1. [Extending Methods](#extending)
+1. [Modify Query in Controller](#in_controller)
+1. [Changelog](#changelog)

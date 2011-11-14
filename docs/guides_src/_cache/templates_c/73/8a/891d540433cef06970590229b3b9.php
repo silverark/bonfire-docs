@@ -36,7 +36,11 @@ class __TwigTemplate_738a891d540433cef06970590229b3b9 extends Twig_Template
 \t\t\t</div>
 \t\t
 \t\t\t<div class=\"column size1of3\">
-\t\t\t\tColumns 2
+\t\t\t\t<h3>Models</h3>
+\t\t\t\t<ul>
+\t\t\t\t\t<li><a href=\"migrations.html\">Bonfire Migrations</a></li>
+\t\t\t\t\t<li><a href=\"models.html\">Bonfire Models</a></li>
+\t\t\t\t</ul>
 \t\t\t</div>
 \t\t\t
 \t\t\t<div class=\"column size1of3\">
