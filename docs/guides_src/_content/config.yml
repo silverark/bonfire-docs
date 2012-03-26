@@ -10,4 +10,4 @@ markdown:
     use_markdown_extra: true
     
 bonfire:
-    version: 0.2
+    version: 0.6

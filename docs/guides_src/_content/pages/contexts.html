@@ -1,0 +1,76 @@
+---
+title: Bonfire Contexts
+---
+
+<a name="intro"></a>
+## 1 What Are Contexts?
+
+A Context is an area of similar responsibility within the code and/or UI.  They appear as top-level navigation objects within the main menu, and should all cover a similar topic, or theme. The following are all good candidates for Contexts:
+
+Context			| Description	
+----------------|---------------
+Security		| Holds menu items from different modules that provide security tools and reports.
+Forums			| You can group all of your forums admin panels in a single context.
+Design			| You might provide methods for editing your templates or various error pages
+Tools			| Might contain collections of utilities that don't belong elsewhere.
+Role-Specific	| A single role might have access to a set of tools that no one else does. These could be grouped so they are easier to provide access to. |
+
+
+<a name="controllers"></a>
+## 2 Context Controllers
+
+Contexts map directly to controllers of the same name in your module. If you are creating a controller to handle your Settings Context for your module, the controller should be named <tt>content.php</tt> and the class should be named <tt>Content</tt>. 
+
+{% geshi "PHP" use_classes %}
+class Content extends Admin_Controller {
+	...
+}
+{% endgeshi %}
+
+<a name="views"></a>
+## 3 Context Views
+
+All views for your contexts should be stored within the views folder of your module, under a sub-folder named after the context. Continuing our example, the view for the index method would exist at <tt>my_module/views/content/index.php</tt>.
+
+
+<a name="public"></a>
+## 4 Public Contexts
+
+A Public Context is just a fancy name for what you would typically do in a CodeIgniter application. This controller is named the same as your module and can have as many methods that map directly to the URI as you need. 
+
+Views are stored directly in your views folder. For front-facing page, or Public Contexts, there's little-to-no magic going on behind the scenes other than what you're already used to working with. The file would then be available at: 
+
+	http://yoursite.com/module_name
+
+
+<a name="required"></a>
+## 5 Required Contexts
+
+Bonfire requires only two contexts to exist, and will create them if they don’t. They are the **Developer** and **Settings** Contexts.
+
+Context		| Description
+------------|------------------
+Developer	| This context is meant for tools designed to make the application developer’s life easier and may include database tools, code generation, deploy helpers, etc. |
+Settings	| Any settings related to your module.  These are typically items that are infrequently changed, like the number of events to show on each page, etc. |
+
+
+<a name="custom"></a>
+## 6 Creating New Contexts
+
+You can create any number of contexts to fit your application’s specific needs.  Doing so is a very simple task that only consists of 3 steps.
+
+###  6.1 Update the Application Config Array
+
+
+
+---introtext---
+
+## Bonfire Contexts
+
+
+---sidebar---
+
+### Chapters
+
+1. [What are Contexts](#intro)
+1. [Context Controllers](#controllers)
