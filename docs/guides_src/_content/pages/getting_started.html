@@ -431,7 +431,7 @@ Now we just need a way to create new posts. Let's start by creating a new sub-me
 First, we create a view file holds the menu itself. Create a new file at <tt>blog/views/content/sub_nav.php</tt>.
 
 {% geshi "PHP" use_classes %}
-<ul class="nav pills">
+<ul class="nav nav-pills">
 	<li <?php echo $this->uri->segment(4) == '' ? 'class="active"' : '' ?>>
 		<a href="<?php echo site_url(SITE_AREA .'/content/blog') ?>">Posts</a>
 	</li>
@@ -453,7 +453,7 @@ public function __construct()
 		$this->load->model('post_model');
 		
 		Template::set('toolbar_title', 'Manage Your Blog');
-		Template::set_block('sub_nav', 'content/subnav');
+		Template::set_block('sub_nav', 'content/sub_nav');
 	}
 {% endgeshi %}
 
@@ -576,7 +576,7 @@ public function create()
 		if ($this->save_post())
 		{
 			Template::set_message('You post was successfully saved.', 'success');
-			redirect(SITE_AREA .'content/blog');
+			redirect(SITE_AREA .'/content/blog');
 		}
 	}
 
@@ -601,7 +601,7 @@ public function edit_post($id=null)
 		if ($this->save_post('update', $id))
 		{
 			Template::set_message('You post was successfully saved.', 'success');
-			redirect(SITE_AREA .'content/blog');
+			redirect(SITE_AREA .'/content/blog');
 		}
 	}
 	
