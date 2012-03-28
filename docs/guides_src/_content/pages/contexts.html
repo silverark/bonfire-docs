@@ -57,9 +57,31 @@ Settings	| Any settings related to your module.  These are typically items that 
 <a name="custom"></a>
 ## 6 Creating New Contexts
 
-You can create any number of contexts to fit your application’s specific needs.  Doing so is a very simple task that only consists of 3 steps.
+You can create any number of contexts to fit your application’s specific needs.  Doing so is a very simple task that only requires a single step.
 
+<a name="array"></a>
 ###  6.1 Update the Application Config Array
+
+To create a new context that will be displayed in the admin area, you only need to add the name of the context to the <td>contexts</td> array in the <td>config/application.php</td> file. The context name must not contain any spaces. If more than one word is needed, separate the words with an underscore.
+
+
+<a name="name"></a>
+### 6.2 Localizing the Context Name
+
+To make your context's name localized, you simply need to add a new entry in the <td>language/english/application_lang.php</td> file. The name should be preceded by <td>bf_context_</td>. 
+
+{% geshi "PHP" use_classes %}
+$lang['bf_context_new'] = 'New Context';
+{% endgeshi %}
+
+The localized version will automatically be used if present, otherwise the name displayed will be the name of the context.
+
+<a name="access"></a>
+### 6.3 Restricting Access to Contexts
+
+You can restrict access to your contexts by creating a new permission. This permission should be named 'Site.{context}.View', where <td>{context}</td> is the name of your context. Once this permission is created in the system, no one will be able to view the context if they do not have permission.
+
+In order to manage the permission, you will need to create another permission called 'Permissions.{context}.Manage'.
 
 
 
@@ -74,3 +96,10 @@ You can create any number of contexts to fit your application’s specific needs
 
 1. [What are Contexts](#intro)
 1. [Context Controllers](#controllers)
+1. [Context Views](#views)
+1. [Public Contexts](#public)
+1. [Required Contexts](#required)
+1. [Custom](#custom)
+	* [Update the Application Config Array](#array)
+	* [Localizing the Context Name](#name)
+	* [Restricting Access to Contexts](#access)
