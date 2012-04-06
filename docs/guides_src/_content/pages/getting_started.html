@@ -180,6 +180,9 @@ $config['module_config'] = array(
     'version'       => '1.0.1',         
     'menu'          => array(           
         'context'   => 'path/to/view'
+    ),
+    'weights'		=> array(
+    	'context'	=> weight
     )
 );
 {% endgeshi %}
@@ -197,6 +200,8 @@ Not all of these settings will be used for the Blog module, but you should under
 **Version** is a simple version string.
 
 **Menu** is an array that lets you specify sub-menus that will appear under each context. It points to a view file within your module that contains a &lt;ul&gt; of your options.
+
+**Weights** is an array that allows you to order the menu items within the main context navigation. Think of it like the menu is a bowl of water. The heavier the weight (or the larger the value), the farther down the menu it will sink.
 
 
 <a name="module-content"></a>
