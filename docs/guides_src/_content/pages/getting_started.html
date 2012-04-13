@@ -586,7 +586,7 @@ public function create()
 	}
 
 	Template::set('toolbar_title', 'Create New Post');
-	Template::set_view('/content/post_form');
+	Template::set_view('content/post_form');
 	Template::render();
 }
 {% endgeshi %}
@@ -613,7 +613,7 @@ public function edit_post($id=null)
 	Template::set('post', $this->post_model->find($id));
 
 	Template::set('toolbar_title', 'Edit Post');
-	Template::set_view('/content/post_form');
+	Template::set_view('content/post_form');
 	Template::render();
 }
 {% endgeshi %}
