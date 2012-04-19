@@ -33,6 +33,11 @@ class __TwigTemplate_738a891d540433cef06970590229b3b9 extends Twig_Template
 \t\t\t\t\t<li><a href=\"guides_guidelines.html\">Bonfire Guides Guidelines</a></li>
 \t\t\t\t\t<li><a href=\"coding_conventions.html\">Coding Conventions</a></li>
 \t\t\t\t</ul>
+\t\t\t\t
+\t\t\t\t<h3>Start Here</h3>
+\t\t\t\t<ul>
+\t\t\t\t\t<li><a href=\"getting_started.html\">Getting Started with Bonfire</a></li>
+\t\t\t\t</ul>
 \t\t\t</div>
 \t\t
 \t\t\t<div class=\"column size1of3\">
@@ -41,10 +46,24 @@ class __TwigTemplate_738a891d540433cef06970590229b3b9 extends Twig_Template
 \t\t\t\t\t<li><a href=\"migrations.html\">Bonfire Migrations</a></li>
 \t\t\t\t\t<li><a href=\"models.html\">Bonfire Models</a></li>
 \t\t\t\t</ul>
+\t\t\t\t
+\t\t\t\t<h3>Controllers</h3>
+\t\t\t\t<ul>
+\t\t\t\t\t<li><a href=\"controllers.html\">Bonfire Controllers</a></li>
+\t\t\t\t\t<li><a href=\"contexts.html\">Contexts</a></li>
+\t\t\t\t</ul>
+\t\t\t\t
+\t\t\t\t<h3>Views</h3>
+\t\t\t\t<ul>
+\t\t\t\t\t<li><a href=\"views.html\">Layouts and Views</a></li>
+\t\t\t\t</ul>
 \t\t\t</div>
 \t\t\t
 \t\t\t<div class=\"column size1of3\">
-\t\t\t\tColumns 3
+\t\t\t\t<h3>Farther Down the Rabbit Hole</h3>
+\t\t\t\t<ul>
+\t\t\t\t\t<li><a href=\"system_events.html\">System Events</a></li>
+\t\t\t\t</ul>
 \t\t\t</div>
 \t\t</div>
 \t

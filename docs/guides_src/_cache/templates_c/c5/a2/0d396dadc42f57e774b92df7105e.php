@@ -31,12 +31,24 @@ class __TwigTemplate_c5a20d396dadc42f57e774b92df7105e extends Twig_Template
 \t<link rel=\"stylesheet\" href=\"assets/css/screen.css\">
 \t
 \t<meta http-equiv=\"x-dns-prefetch-control\" content=\"off\" />
+\t<script type=\"text/javascript\">
+\t  var _gaq = _gaq || [];
+\t  _gaq.push(['_setAccount', 'UA-7254730-10']);
+\t  _gaq.push(['_trackPageview']);
+\t
+\t  (function() {
+\t    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+\t    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+\t    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+\t  })();
+\t
+\t</script>
 </head>
 <body>
 \t";
-        // line 21
+        // line 33
         $this->env->loadTemplate("toc.html")->display($context);
-        // line 22
+        // line 34
         echo "
 \t<div class=\"inner\" style=\"height: 0; padding: 0;\">
 \t\t<a id=\"toc-handle\" href=\"#\">Table of Contents</a>
@@ -64,13 +76,13 @@ class __TwigTemplate_c5a20d396dadc42f57e774b92df7105e extends Twig_Template
 \t<div id=\"intro\">
 \t\t<div class=\"inner\">
 \t\t\t";
-        // line 48
+        // line 60
         echo (isset($context['introtext']) ? $context['introtext'] : null);
         echo "
 \t\t\t
 \t\t\t<div id=\"sidebar\">
 \t\t\t\t";
-        // line 51
+        // line 63
         echo (isset($context['sidebar']) ? $context['sidebar'] : null);
         echo "
 \t\t\t</div>
@@ -81,7 +93,7 @@ class __TwigTemplate_c5a20d396dadc42f57e774b92df7105e extends Twig_Template
 \t\t<div class=\"inner\">
 \t\t\t<div id=\"main\">
 \t\t\t\t";
-        // line 59
+        // line 71
         echo (isset($context['content']) ? $context['content'] : null);
         echo "
 \t\t\t\t
@@ -103,8 +115,8 @@ class __TwigTemplate_c5a20d396dadc42f57e774b92df7105e extends Twig_Template
 \t\t<div class=\"inner\">
 \t\t\t<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"http://i.creativecommons.org/l/by-sa/3.0/88x31.png\" /></a><br /><span xmlns:dct=\"http://purl.org/dc/terms/\" href=\"http://purl.org/dc/dcmitype/Text\" property=\"dct:title\" rel=\"dct:type\">Bonfire</span> by <a xmlns:cc=\"http://creativecommons.org/ns#\" href=\"http://cibonfire.com\" property=\"cc:attributionName\" rel=\"cc:attributionURL\">Lonnie Ezell and the Bonfire Team</a> is licensed under a <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
 \t\t\t<p>";
-        // line 78
-        echo $this->getAttribute((isset($context['piecrust']) ? $context['piecrust'] : null), "branding", array(), "any", false, 78);
+        // line 90
+        echo $this->getAttribute((isset($context['piecrust']) ? $context['piecrust'] : null), "branding", array(), "any", false, 90);
         echo "</p>
 \t\t</div>
 \t</div>
