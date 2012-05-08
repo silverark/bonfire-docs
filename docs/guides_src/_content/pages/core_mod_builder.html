@@ -1,0 +1,115 @@
+---
+title: Module Builder
+---
+
+<a name="requirements"></a>
+## 1 Requirements
+
+Module Builder is available in the Developer context and requires some knowledge of database table design, column types and form layout.
+
+
+<a name="building-a-module"></a>
+## 2 Building a module
+
+The builder generates the code for a module based on the inputs to a few form fields and can build a DB based module or a module without DB access.  The builder can create a DB table for you or you can use an existing db table to create the module.
+
+To create a new module which does not require DB access requires you to fill out one form field (the module name field) and pressing the "Build" button.
+
+This will generate a module in the *bonfire/modules* folder with config, controllers, language, migrations (for permissions) and view files.  Amazing for one form field and a button click.
+
+Of course that's just the basic module.  To get more you have to give more!
+
+If you want to use a DB table then you need to fill out more fields.  You can choose to build a new DB table or choose an existing table.
+
+<a name="new-db-table"></a>
+### 2.1 With a new database table
+
+You must choose the number of fields you would like in the table, excluding the primary key field which is automatically included.
+
+Then for every field you fill in the form Label, table field name, form input element, table field type, table field length and the form validation settings you would like.
+
+The primary key is assumed to be "id" but this is editable before (an of course after) the form is submitted.
+
+One the field details have been entered then just click the "Build" button.
+
+Hey presto! Now you have a brand new shiny module with all files mentioned above as well as a new model file and a migration file to create the table in the database.  The migration file is even run automatically so you can use the module straight away.
+
+<a name="existing-db-table"></a>
+### 2.2 With an existing database table
+
+You must choose the number of fields you would like in the table, excluding the primary key field which is automatically included.
+
+Then for every field you fill in the form Label, table field name, form input element, table field type, table field length and the form validation settings you would like.
+
+The primary key is assumed to be "id" but this is editable before (an of course after) the form is submitted.
+
+One the field details have been entered then just click the "Build" button.
+
+Hey presto! Now you have a brand new shiny module with all files mentioned above as well as a new model file and a migration file to create the table in the database.  The migration file is even run automatically so you can use the module straight away.
+
+<a name="options"></a>
+## 3 Module Builder Options
+
+There are lots of options which you can use when building your module.  These options are hidden by default but to see them you just click on the "Toggle Advanced Options" links.
+
+Clicking on the link will display the options below the link.Then for every field you fill in the form Label, table field name, form input element, table field type, table field length and the form validation settings you would like.
+
+There are two sets of options, Module Options and Table Options which we will describe below.
+
+<a name="module-options"></a>
+### 3.1 Module Options
+
+The Module Options allow you to customize the module functionality.  The options are:
+
+* Module Description - The module description is placed in the module config file and appears on the module list in the main Module Builder page.
+* Contexts Required - Lists the available Bonfire contexts, you choose the contexts you would like the builder to create for your module. All contexts are selected by default.
+* Controller Actions - Lists the CRUD actions which the builder can create for you. All actions are selected by default.
+* Give Role Full Access - Choose which Bonfire role you would like to have full access to the module after creation.  The Administrator role is the default.
+
+
+<a name="table-options"></a>
+### 3.2 Table Options
+
+The Table Options are related to the DB table if you chose to build the module with DB access. The optiosn are:
+
+* Table Name - This is the name given to the table in the database. This is defaulted to the lowercase and underscored version of the module name.
+* Form Input Delimiters
+* Form Error Delimiters
+* Textarea Editor - None
+* Use "Soft" Deletes - FALSE
+* Use "Created" Field - FALSE
+* "Created" Field Name - created_on
+* Use "Modified" Field - FALSE
+* "Modified" Field Name - modified_on
+* Primary Key - id
+
+
+<a name="changelog"></a>
+## 4 Changelog
+
+* Mar 15, 2012: Initial version
+
+
+
+---introtext---
+
+## Module Builder
+
+The Module Builder in Bonfire provides you with a tool to generate the bones of a new module in a matter on seconds.
+
+This guide will help you understand:
+
+* Requirements
+* How to use it
+* Modules with new DB Tables
+* Modules from existing DB Tables
+
+---sidebar---
+
+### Chapters
+
+1. [Requirements](#requirements)
+1. [Building a module](#building-a-module)
+  * [With a new database table](#new-db-table)
+  * [With an existing database table](#existing-db-table)
+1. [Changelog](#changelog)
