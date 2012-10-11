@@ -172,6 +172,7 @@ To make sure that your blog shows up in the admin area, we need to create a conf
 Create a new file in your new <tt>config</tt> folder, called <tt>config.php</tt>.
 
 {% geshi "PHP" use_classes %}
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 $config['module_config'] = array(
     'name'          => 'Blog',          
     'description'   => 'A Simple Blog Example',
@@ -182,7 +183,7 @@ $config['module_config'] = array(
         'context'   => 'path/to/view'
     ),
     'weights'		=> array(
-    	'context'	=> weight
+    	'context'	=> 0
     )
 );
 {% endgeshi %}
@@ -212,6 +213,7 @@ In order to manage your blog, we will create a new entry under the Content menu 
 Create a new controller, <tt>blog/controllers/content.php</tt>. Each context uses a controller of the same name. In this case we want to create some actions for the Content Context, so we create a controller named <tt>content.php</tt>.
 
 {% geshi "PHP" use_classes %}
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Content extends Admin_Controller {
 
 	public function __construct() 
@@ -245,7 +247,21 @@ The <tt>index()</tt> method is the method that will be called by default when yo
 
 We are keeping it simple just to make sure everything is in working order for now. 
 
-Save the files, then navigate to your admin area, Content menu. You will see a new <tt>Blog</tt> menu shows up there now that we have created a controller for this context. Click the new menu item and your new page will show up. 
+Save the files, then navigate to **http://yoursite.com/admin/content/blog** to view your new page. 
+
+To add a link to the <tt>blog</tt> in the Content dropdown menu, you first need to add the permissions to the administrator role. The quick guide below will help, but please make sure you have a good read through the [Roles and permissions](http://cibonfire.com/docs/guides/roles_and_permissions.html) documentation to cement your understanding.
+
+1. Navigate to your admin area => Settings => Permissions.
+2. Click <tt>Create</tt> in the sub navigation bar.
+3. Enter <tt>Blog.Content.View</tt> in the name field.
+4. Enter <tt>Allow users to view the Blog Content Context</tt> in the Description field.
+5. Click the <tt>Save Permission</tt> Button.
+6. Navigate to your admin area => Settings menu => Roles.
+7. Click <tt>Administrator<tt> in the table.
+8. Locate <tt>Blog<tt> under the Permissions header.
+9. Check the <tt>View<tt> box inline with <tt>Content<tt>.
+
+You should now be able to see the <tt>blog</tt> link in the content's dropdown menu.
 
 
 <a name="module-model"></a>
@@ -256,6 +272,7 @@ In order to view any posts, we will need to create a model that interacts with t
 Create a new model file at <tt>blog/models/post_model.php</tt>.
 
 {% geshi "PHP" use_classes %}
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Post_model extends MY_Model {
 
 	protected $table		= 'posts';
@@ -314,6 +331,7 @@ Migrations are simply a set of commands that are run to make changes to the data
 Create a new file at <tt>blog/migrations/001_Initial_tables.php</tt>.
 
 {% geshi "PHP" use_classes %}
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Migration_Initial_tables extends Migration {
 
 	public function up() 
